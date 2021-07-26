@@ -1,0 +1,26 @@
+{% extends 'base-site/base.html' %}
+
+{% load static%}
+
+{% block body %}
+
+<section>
+    <div class="container">
+        <div class="col-sm-8 col-md-8">
+
+        {% include 'glavnaya/favorits.html' %}
+        {% include 'glavnaya/favorit.html' %}
+
+        </div>
+
+        <div class="col-sm-4 col-md-4">
+        {% include 'glavnaya/sidebar.html' %}
+        </div>
+
+    </div>
+
+</section>
+        {% include 'glavnaya/rubrics.html' %}
+
+
+{% endblock %}
