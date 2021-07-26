@@ -6,6 +6,8 @@ from news.models import Post, Category
 from faicon.fields import FAIconField
 from mptt.models import MPTTModel, TreeForeignKey
 
+
+
 class Slider(models.Model):
 
     STATUS_SLIDER = (
@@ -112,14 +114,23 @@ class Ikonki(models.Model):
         verbose_name = "Социальные сети"
         verbose_name_plural = "Социальные сети"
 
+class Menu(models.Model):
+    title = models.CharField(max_length=30, verbose_name='Название')
+    def __int__(self):
+        return self.title
 
-class Menu(MPTTModel):
+    class Meta:
+        verbose_name = 'меню'
+        verbose_name_plural = 'меню'
 
+class Punct(MPTTModel):
+
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='menu')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', verbose_name='Родитель')
-    menu = models.CharField(max_length=255, verbose_name='меню')
+    punct = models.CharField(max_length=255, verbose_name='меню')
 
     def __int__(self):
-        return self.id
+        return self.punct
 
     class Meta:
         verbose_name = 'меню'

@@ -67,9 +67,17 @@ class FooterAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
+class PunctInline(admin.TabularInline):
+    fk_name = 'menu'
+    model = Punct
+    extra = 1
+
 
 @admin.register(Menu)
-class MenuAdmin(DraggableMPTTAdmin):
+class MenuAdmin(admin.ModelAdmin):
+    inlines = [PunctInline]
+    list_display = ('id', 'title')
+    save_as = True
     save_on_top = True
 
 
