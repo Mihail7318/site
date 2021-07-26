@@ -29,7 +29,7 @@ class Smena(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post', kwargs={"slug": self.slug})
+        return reverse('smena', kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name = 'Профильная смена'

@@ -26,6 +26,11 @@ def comments_filter(comments_list):
                       <textarea type="text" class="form-control" name="comment-text"></textarea><br>
                       <input type="submit" class="btn btn-primary submit-reply" data-id="{id}" data-submit-reply="{parent_id}" value="отправить">
                   </form>
+                  
+                  <form action="" method="POST" class="comment-form form-group" id="comp-{id}" style="display:none;">
+                      <textarea type="text" class="form-control" name="complain-text"></textarea><br>
+                      <input type="submit" class="btn btn-primary submit-complain" data-id="{id}" data-submit-reply="{parent_id}" value="отправить">
+                  </form>
                 </div>
               </li>
           """.format(id=comment['id'], author=comment['author'], timestamp=comment['timestamp'], text=comment['text'], parent_id=comment['parent_id'])

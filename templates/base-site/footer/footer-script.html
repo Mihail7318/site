@@ -40,7 +40,7 @@
                 data: data,
                 url: "{% url 'comment_child_create' %}",
                 success: function(data){
-                    window.location.replace('/post-comments')
+                    window.location.replace('/ru/news/news/{{ post.slug }}')
                  }
             })
             
@@ -49,7 +49,12 @@
 
         $(".complain").on('click', function(){
             var commentId = $(this).attr('data-id')
-
+            $("#comp-"+commentId).fadeToggle();
+        })
+        $(".submit-complain").on('click', function(e){
+            e.preventDefault()
+        var id = $(this).attr('data-id')
+        var text = $("#comp-"+id).find('textarea[name="complain-text"]').val();
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -66,11 +71,11 @@
                 return cookieValue;
             }
             const csrftoken = getCookie('csrftoken');
-
              data = {
                 user: "{{ request.user.username }}",
                 slug: "{{ post.slug }}",
-                com_id: commentId,
+                com_id: id,
+                text: text,
                 csrfmiddlewaretoken: csrftoken
             }
 
@@ -79,7 +84,7 @@
                 data: data,
                 url: "{% url 'comment_complain' %}",
                 success: function(data){
-                    window.location.replace('/post-comments')
+                    window.location.replace('/ru/news/news/{{ post.slug }}')
                  }
             })
 
@@ -118,7 +123,7 @@
                 data: data,
                 url: "{% url 'comment_create' %}",
                 success: function(data){
-                    window.location.replace('/post-comments')
+                    window.location.replace('/ru/news/news/{{ post.slug }}')
                  }
             })
         })
