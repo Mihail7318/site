@@ -1,0 +1,31 @@
+{% extends 'base-site/base.html' %}
+{% load static%}
+{% block body %}
+
+<br>
+
+<div class="row">
+    <!----Федеральный--->
+    <div class="col-sm-6 col-md-6">
+        <div class="title">
+            <h2>Федиральные конкурсы и олимпиады</h2>
+        </div>
+        <div>
+            {% for fed in feds %}
+                <span style="padding-left:10px; "><a href="https://{{ fed.slug }}/">{{ fed.title }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
+    <!----Региональный--->
+    <div class="col-sm-6 col-md-6 ">
+        <div class="title">
+            <h2>Региональные конкурсы и олимпиады</h2>
+        </div>
+        <div>
+            {% for reg in reg %}
+                <span style="padding-left:10px; "><a href="https://{{ reg.slug }}/">{{ reg.title }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,17 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Faq, Standartpages, Setting
+from .models import Faq, Standartpages, Setting, Partner, Document
+
+
+
+
+@register(Document)
+class DocumentTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+
+@register(Partner)
+class PartnerTranslationOptions(TranslationOptions):
+    fields = ('name',)
 
 @register(Faq)
 class FaqTranslationOptions(TranslationOptions):

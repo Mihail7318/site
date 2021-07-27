@@ -124,6 +124,7 @@ def create_comment(request):
         new_comment.save()
     return redirect(request.META.get('HTTP_REFERER','redirect_if_referer_not_found'))
 
+@transaction.atomic
 def complain(request):
     if request.method == "POST":
         user_name = request.POST.get('user')
@@ -131,8 +132,11 @@ def complain(request):
         comp.user = User.objects.get(username=user_name)
         comp.post = Post.objects.get(slug=request.POST.get("slug"))
         comp.comment = Comment.objects.get(id=request.POST.get("com_id"))
+        comp.text = request.POST.get("text")
         comp.save()
-    return redirect(request.META.get('HTTP_REFERER','redirect_if_referer_not_found'))
+        comments_ = Comment.objects.filter(post__slug=request.POST.get("slug"))
+        comments_list = create_comments_tree(comments_)
+    return render(request, 'news/newsdetails.html', {'comments': comments_list})
 
 @transaction.atomic
 def create_child_comment(request):

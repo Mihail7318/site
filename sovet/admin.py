@@ -8,24 +8,23 @@ from django.utils.safestring import mark_safe
 # Register your models here.
 from modeltranslation.admin import TranslationAdmin
 
-from sovet.models import Popsov, Exsov
+from .models import *
 
-@admin.register(Popsov)
-class PopsovAdmin(TranslationAdmin):
-    list_display = ('id', 'title',  'created_at', 'status', 'views', )
+
+
+
+class ChelensovetaInline(admin.TabularInline):
+    fk_name = 'sovet'
+    model = Chelensoveta
+    extra = 1
+
+@admin.register(Sovet)
+class SovetAdmin(TranslationAdmin):
+    inlines = [ChelensovetaInline]
+    list_display = ('id', 'title',)
+    prepopulated_fields = {'slug': ('title',)}
     list_display_links = ('id', 'title')
-    search_fields = ('title', 'content', 'views', 'doljnost')
-    list_editable = ('status',)
-    list_filter = ('status',)
+    search_fields = ('title',)
     save_as = True
     save_on_top = True
 
-@admin.register(Exsov)
-class ExsovAdmin(TranslationAdmin):
-    list_display = ('id', 'title',  'created_at', 'status', 'views', )
-    list_display_links = ('id', 'title')
-    search_fields = ('title', 'content', 'views')
-    list_editable = ('status',)
-    list_filter = ('status',)
-    save_as = True
-    save_on_top = True

@@ -1,0 +1,65 @@
+{% extends 'base-site/base.html' %}
+{% load static%}
+{% load mptt_tags %}
+
+        {% block body %}
+
+
+
+<!--================Categories Product Area =================-->
+<br>
+        <section class="categories_product_main p_80">
+            <div class="container">
+                <div class="categories_main_inner">
+                    <div class="row row_disable">
+                        <div class="col-lg-12">
+							<div class="c_product_grid_details">
+                                <div class="c_product_item">
+                                    <!----Контент--->
+                                    <div class="row">
+                                        <div class="c_product_text">
+                                            <h3>{{ post.title }}</h3>
+                                            {{ post.content|safe }}
+                                        </div>
+                                    <!----Преподователь--->
+                                        <center>
+                                            <!--- for profile --->
+                                        <div>
+                                            <img width="200" height="350" src="{% static 'style-site/assets/img/bg-apartment-table.jpg' %}">
+                                            <h3>{{ user.name }}</h3>
+                                            <h5>Должность</h5>
+                                        </div>
+                                            <!--- endfor --->
+                                        </center>
+
+                                    <!----Новости--->
+                                        <div class="title">
+                                            <h2>Новости</h2>
+                                        </div>
+<!--- for blog --->
+                                        {% for new in news %}
+    <div class="life-style-post-text">
+         <div class="col-sm-4 col-md-4 pad">
+            <img src="assets/img/ls-img.jpg" alt="ls-img">
+         </div>
+         <!-- .blog-text -->
+         <div class="blog-text">
+            <h3><a href="{{ new.get_absolute_url }}">{{ new.title }}</a></h3>
+            <span class="post-date">{{ new.title }}</span>
+            <span class="post-comment"><i class="fa fa-comments-o" aria-hidden="true"></i> 100</span>
+             {{ new.content|safe }}
+         </div>
+      </div>
+                                        {% endfor %}
+      <!--- endfor --->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Categories Product Area =================-->
+        {% endblock %}

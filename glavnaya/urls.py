@@ -6,6 +6,6 @@ from .views import *
 
 urlpatterns = [
        path('slider/', slider),
-       path('', Home.as_view(), name='glavnaya'),
+       path('', Homevv.as_view(), name='glavnaya'),
 
 ]

@@ -35,7 +35,7 @@ class FaqAdmin(TranslationAdmin):
 
 
 @admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
+class DocumentAdmin(TranslationAdmin):
     save_on_top = True
 
 
@@ -50,7 +50,7 @@ class SettingAdmin(TranslationAdmin):
             return True
 
 @admin.register(Partner)
-class PartnerAdmin(admin.ModelAdmin):
+class PartnerAdmin(TranslationAdmin):
     save_as = True
     save_on_top = True
     list_display = ('id', 'name', 'get_image')

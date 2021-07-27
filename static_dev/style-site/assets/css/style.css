@@ -468,7 +468,26 @@ header {
     display: inline-block;
     margin: 1rem;
 }
-
+.title {
+    border-color: #ebebeb #ebebeb #ebebeb #f4b838;
+    border-style: solid;
+    border-width: 1px 1px 1px 4px;
+    float: left;
+    margin-bottom: 30px;
+    padding: 9px 10px 9px 25px;
+    position: relative;
+    width: 100%;
+}
+.title ul {
+    float: right;
+    margin-bottom: 0;
+    padding: 0;
+}
+.title li {
+    display: inline;
+    letter-spacing: 1.2px;
+    margin-left: 10px;
+}
 .file-upload-previews span.MultiFile-label .MultiFile-title {
     position: absolute;
     background-color: rgba(0, 0, 0, .4);
@@ -842,6 +861,21 @@ p {
 /*-------------------------------------------
   -- Title
 -------------------------------------------*/
+.carousel-control{
+        background: #666;
+        border: 0px;
+        border-radius: 0px;
+        display: inline-block;
+        font-size: 34px;
+        font-weight: 200;
+        line-height: 18px;
+        opacity: 0.5;
+        padding: 4px 10px 0px;
+        position: static;
+        height: 30px;
+        width: 15px;
+        }
+
 
 .ts-title {
     padding-bottom: 1rem;
@@ -2139,6 +2173,7 @@ select [value=""] {
 #ts-footer {
     background-color: #fff;
     box-shadow: 0 .1875rem .9375rem rgba(0, 0, 0, .15);
+    margin-top: 7rem;
 }
 
 #ts-footer address {
@@ -2147,6 +2182,7 @@ select [value=""] {
 
 #ts-footer #ts-footer-main {
     padding-bottom: 4rem;
+    padding-top: 4rem;
 }
 
 #ts-footer #ts-footer-main nav {

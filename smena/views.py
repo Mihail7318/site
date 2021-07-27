@@ -4,9 +4,9 @@ from .models import *
 from django.db.models import F
 
 
-class Home(ListView) :
+class Homesmena(ListView) :
     model = Smena
-    template_name = 'profsmen/profsmena.html'
+    template_name = 'smena/profsmena.html'
     context_object_name = 'smenas'
     paginate_by = 2
 
@@ -20,13 +20,17 @@ class Home(ListView) :
 
         return context
 
-class GetPost(DetailView):
+class GetPostsmena(DetailView):
     model = Smena
-    template_name = 'profsmen/profsmenadetails.html'
+    template_name = 'smena/profsmenadetails.html'
     context_object_name = 'post'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        slug = self.kwargs.get(self.slug_url_kwarg, None)
+        smena = Smena.objects.get(slug=slug)
+        context['news'] = smena.news.all()
+        #context['user'] =
         self.object.views = F('views') + 1
         self.object.save()
         # self.object.refresh_from_db()

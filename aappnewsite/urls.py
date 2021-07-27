@@ -9,26 +9,24 @@ from .views import DashboardView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sovet/', include('sovet.urls')),
-    path('koncurs/', include('konkurs.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('faicon/', include('faicon.urls')),
     path('', include("contact.urls")),
     path('', include("akaynt.urls")),
-    path('faicon/', include('faicon.urls')),
+    path('koncurs/', include('konkurs.urls')),
+
     path('profile/', DashboardView.as_view(), name='dashboard'),
     path('profile/', include('calendarapp.urls')),
-    path("", include("glavnaya.urls")),
 ]
 
 urlpatterns += i18n_patterns(
-
-    path('news/', include("news.urls")),
+    path('sovet/', include('sovet.urls')),
+    path("", include("glavnaya.urls")),
+    path("news/", include("news.urls")),
     path("", include("cust.urls")),
-
-    path('cust/', include('cust.urls')),
-    path('smena/', include('smena.urls')),
+    path("smena/", include('smena.urls')),
 
 )
 

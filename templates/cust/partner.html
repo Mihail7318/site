@@ -1,0 +1,30 @@
+{% extends 'base-site/base.html' %}
+{% load static%}
+
+
+{% block body %}
+    <h3 align="center">{{ title }}</h3>
+    <br/>
+<section class="faqs">
+    {% for partner in partner %}
+
+
+    <div class="c_product_item">
+        <div class="row">
+            <div style="height:100px;" class="carousel-inner">
+                <div style="height:100px;" class="carousel-item active" data-bs-interval="10000">
+                    <img style="height:100px;" src="{{ MEDIA_URL }}{{ partner.image.url }}" class="d-block w-100" alt="...">
+                    <div style="height:100px;" class="carousel-caption d-none d-md-block">
+                        <h5><a href="{{ partner.ssilka }} ">{{ partner.name }}</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endfor %}
+</section>
+
+{% endblock %}

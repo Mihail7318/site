@@ -60,7 +60,7 @@ class Partner(models.Model):
     button = models.CharField(max_length=30, choices=BUTTON, verbose_name='Статус')
     name = models.CharField(max_length=30, verbose_name='Название')
     ssilka = models.CharField(max_length=30, verbose_name='Ссылка')
-    image = models.ImageField(blank=True,  null=True, verbose_name='Изображение')
+    image = models.ImageField(verbose_name='Изображение')
 
     def __str__(self):
         return self.name
@@ -68,7 +68,6 @@ class Partner(models.Model):
     class Meta:
         verbose_name = 'Партнер'
         verbose_name_plural = 'Партнеры'
-        ordering = ['name']
 
 class Document(models.Model):
     file_obj = models.FileField(upload_to='media/')

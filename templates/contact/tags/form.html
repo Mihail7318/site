@@ -4,15 +4,24 @@
 
 {% block body %}
 
+ <center>
+     <br>
+<H3 class="editContent">Форма обратной связи</H3>
+<div form-row>
 
-<p class="editContent">Форма обратной связи</p>
 <form action="{% url 'contact' %}" method="post"  enctype="multipart/form-data" class="w3layouts-newsletter">
     {% csrf_token %}
+        <div class="form-group col-md-6">
+
     {%  for a in form %}
-        {{ a }}<br>
-    {% endfor %}
-    <input type = "submit" value ="Отправить">
+        {{ a }}
+
+    <br>
+    {% endfor %}</div>
+    <br>
+    <input class="btn" type = "submit" value ="Отправить">
 
 </form>
-
+    </center>
+</div>
 {% endblock %}

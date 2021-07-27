@@ -20,7 +20,7 @@ class PostAdminForm(forms.ModelForm):
 
 
 
-
+'''
 
 @admin.register(Post)
 class PostAdmin(TranslationAdmin):
@@ -30,11 +30,9 @@ class PostAdmin(TranslationAdmin):
     search_fields = ('title', 'content', 'views')
     list_editable = ('status',)
     list_filter = ('status', 'category', 'tags',)
-    form = PostAdminForm
     save_as = True
     save_on_top = True
 
-'''
 
 
 
@@ -78,6 +76,4 @@ class TagAdmin(TranslationAdmin):
 
 
 admin.site.register(Comment)
-
-admin.site.register(Post)
 admin.site.register(Complain)

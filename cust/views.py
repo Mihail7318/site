@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 
 from cust.forms import DocumentForm
 
-from .models import Setting, Standartpages, Faq
+from .models import Setting, Standartpages, Faq, Partner, Document
 
 
 def Upload_file(request):
@@ -29,6 +29,32 @@ def Setting(request):
     return render(request, 'base-site/bases.html', context=context )
 
 
+
+#Document
+def document(request):
+    document = Document.objects.all()
+    context = {
+        'document': document,
+    }
+    if request.LANGUAGE_CODE == "ru":
+        context['name'] = 'Документы'
+    if request.LANGUAGE_CODE == "en":
+        context['name'] = 'Document'
+    return render(request, 'cust/document.html', context=context )
+
+
+
+#Partner
+def partner(request):
+    partner = Partner.objects.all()
+    context = {
+        'partner': partner,
+    }
+    if request.LANGUAGE_CODE == "ru":
+        context['name'] = 'Партнеры'
+    if request.LANGUAGE_CODE == "en":
+        context['name'] = 'Partner'
+    return render(request, 'cust/partner.html', context=context )
 
 #Faq
 def faq(request):

@@ -19,7 +19,7 @@ def slider(request):
 
 
 
-class Home(ListView) :
+class Homevv(ListView) :
     model = Favorites
     template_name = 'glavnaya/body.html'
     context_object_name = 'posts'
