@@ -22,8 +22,6 @@ class Smena(models.Model):
     rubric = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Рубрика')
     content = RichTextUploadingField(blank=True, verbose_name='Описание')
     image = models.ImageField(blank=True, upload_to='media/image/', null=True, verbose_name='Изображение')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Приподователь')
-    news = models.ManyToManyField(Post, verbose_name='новости')
     views = models.IntegerField(default=0, verbose_name='Количество просмотров')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')

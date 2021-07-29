@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('time', models.TimeField(default=0, verbose_name='Время просмотров')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
-                ('rubric', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='news.category', verbose_name='Рубрика')),
+                ('rubric', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='news.Category', verbose_name='Рубрика')),
             ],
             options={
                 'verbose_name': 'Задание(ю)',

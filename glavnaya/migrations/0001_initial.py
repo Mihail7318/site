@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                 ('views', models.IntegerField(default=0, null=True, verbose_name='Количество просмотров')),
                 ('created_at', models.DateTimeField(auto_now_add=True, null=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, null=True, verbose_name='Дата обновления')),
-                ('title', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Slidertitle', to='news.post', verbose_name='Новость')),
+                ('title', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Slidertitle', to='news.Post', verbose_name='Новость')),
             ],
             options={
                 'verbose_name': 'Слайдер',
