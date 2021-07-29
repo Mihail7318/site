@@ -74,28 +74,6 @@ class Favorites(models.Model):
 
 
 
-class Saidebar(models.Model):
-
-    saidebar = models.ManyToManyField(Category, related_name='saidebar', verbose_name='Список')
-
-    def __int__(self):
-        return self.id
-
-    class Meta:
-        verbose_name = 'Сайдбар'
-        verbose_name_plural = 'Сайдбар'
-
-
-class Footer(models.Model):
-    footer = models.CharField(max_length=255, verbose_name='Подвал')
-
-    def __int__(self):
-        return self.id
-
-    class Meta:
-        verbose_name = 'Подвал'
-        verbose_name_plural = 'Подвал'
-
 
 class Ikonki(models.Model):
     STATUS = (
@@ -115,7 +93,10 @@ class Ikonki(models.Model):
         verbose_name_plural = "Социальные сети"
 
 class Menu(models.Model):
+
     title = models.CharField(max_length=30, verbose_name='Название')
+    status = models.BooleanField(default=False, verbose_name='Использовать как главное меню')
+
     def __int__(self):
         return self.title
 
@@ -127,11 +108,26 @@ class Punct(MPTTModel):
 
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='menu')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', verbose_name='Родитель')
-    punct = models.CharField(max_length=255, verbose_name='меню')
+    punct = models.CharField(max_length=255, verbose_name='Название')
+    slug = models.CharField(max_length=255, verbose_name='Ссылка')
 
     def __int__(self):
         return self.punct
 
     class Meta:
-        verbose_name = 'меню'
-        verbose_name_plural = 'меню'
+        verbose_name = 'Пункт'
+        verbose_name_plural = 'Пункты'
+
+
+
+class Footer(models.Model):
+    vidjet_1 = models.TextField(max_length=255, verbose_name='Подвал')
+    vidjet_2 = models.ForeignKey(Menu, on_delete=models.CASCADE, verbose_name='Меню')
+    vidjet_3 = RichTextUploadingField(blank=True, verbose_name='Контакты')
+
+    def __int__(self):
+        return self.id
+
+    class Meta:
+        verbose_name = 'Подвал'
+        verbose_name_plural = 'Подвал'

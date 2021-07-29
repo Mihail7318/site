@@ -1,0 +1,50 @@
+[
+  {
+    "model": "news.category",
+    "pk": 1,
+    "fields": {
+      "name_en": "Pervaya categoriya",
+      "name_ru": "Первая категория",
+      "name": "Первая категория",
+      "lft": "1",
+      "rght": "2",
+      "tree_id": "1",
+      "level": "0",
+      "slug": "pervaya-categoriya"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 2,
+    "fields": {
+      "name_en": "Vtoraya categoriya",
+      "name_ru": "Вторая категория",
+      "name": "Вторая категория",
+      "lft": "1",
+      "rght": "2",
+      "tree_id": "1",
+      "level": "0",
+      "slug": "vtoraya-categoriya"
+    }
+  },
+  {
+    "model": "news.post",
+    "pk": 1,
+    "fields": {
+      "status": "Publish",
+      "yved": "1",
+      "title": "Первая новость",
+      "title_en": "pervaya novost",
+      "tile_ru": "Первая новость",
+      "content": "Первая новость",
+      "content_en": "pervaya novost",
+      "content_ru": "Первая новость",
+      "views": "0",
+      "created_at": "2021-07-27 19:03:57.154047",
+      "update_at": "2021-07-27 19:03:57.154047",
+      "slug": "pervaya-novost",
+      "author_id": "1",
+      "category_id": "1"
+    }
+  }
+]

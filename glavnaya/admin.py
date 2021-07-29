@@ -51,17 +51,6 @@ class FavoritesAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(Saidebar)
-class SaidebarAdmin(admin.ModelAdmin):
-    save_on_top = True
-    def has_add_permission(self, request):
-        num_objects = self.model.objects.count()
-        if num_objects >= 1:
-            return False
-        else:
-            return True
-
-
 @admin.register(Footer)
 class FooterAdmin(admin.ModelAdmin):
     save_on_top = True

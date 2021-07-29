@@ -13,12 +13,8 @@ class Setting(models.Model):
     favicon = models.ImageField(blank=True, upload_to='images/', verbose_name='Иконка сайта')
     logotip = models.ImageField(blank=True, upload_to='images/', verbose_name='Логотип')
     address = models.CharField(blank=True, max_length=100, verbose_name='Адрес')
-    phone = models.CharField(blank=True, max_length=15, verbose_name='Телефон')
+    phone = models.CharField(blank=True, max_length=20, verbose_name='Телефон')
     email = models.CharField(blank=True, max_length=50, verbose_name='Электроная почта')
-    smtpserver = models.CharField(blank=True, max_length=50, verbose_name='SMTPserver')
-    smtpemail = models.CharField(blank=True, max_length=50, verbose_name='SMTPemail')
-    smtppassword = models.CharField(blank=True, max_length=50, verbose_name='SMTPpassword')
-    smtpport = models.CharField(blank=True, max_length=8, verbose_name='SMTPport')
 
     def __str__(self):
         return self.title

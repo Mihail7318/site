@@ -167,13 +167,16 @@
                     <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Новости</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Статьи</a>
+                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Новости</a>
                         </li>
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Рубрики</a>
+                            <a class="treeview-item" href="{% url 'addnews' %}"><i class="icon fa fa-circle-o"></i> Статьи</a>
                         </li>
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:all_events' %}"><i class="icon fa fa-circle-o"></i> Теги</a>
+                            <a class="treeview-item" href="{% url 'addnewscategory' %}"><i class="icon fa fa-circle-o"></i> Рубрики</a>
+                        </li>
+                        <li>
+                            <a class="treeview-item" href="{% url 'addnewstag' %}"><i class="icon fa fa-circle-o"></i> Теги</a>
                         </li>
                         <li>
                             <a class="treeview-item" href="{% url 'calendarapp:all_events' %}"><i class="icon fa fa-circle-o"></i> Комментарии</a>
@@ -204,7 +207,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="app-menu__item" href="{% url 'calendarapp:calendar' %}"><i class="app-menu__icon fa fa-indent"></i><span class="app-menu__label">Тесты и задания</span></a>
+                    <a class="app-menu__item" href="{% url 'listtaski' %}"><i class="app-menu__icon fa fa-indent"></i><span class="app-menu__label">Тесты и задания</span></a>
                 </li>
 
                 <li>

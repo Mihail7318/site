@@ -2,6 +2,8 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
+from django.contrib.auth.models import User
+
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
@@ -52,7 +54,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Автор', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, default='self',  related_name='news_author', verbose_name='Автор', on_delete=models.CASCADE)
 
     STATUS_NEWS = (
         ('Publish', 'Опубликовать'),
@@ -79,6 +81,7 @@ class Post(models.Model):
         return reverse('post', kwargs={"slug": self.slug})
 
     class Meta:
+        db_table = "news_post"
         verbose_name = 'Статья(ю)'
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at']
@@ -103,8 +106,17 @@ class Comment(models.Model):
         return self.parent
 
 
+    class Meta:
+        verbose_name = 'Коментарии'
+        verbose_name_plural = 'Коментарии'
+
+
 class Complain(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='автор', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Запись')
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, verbose_name='Коментарий')
     text = models.TextField()
+
+    class Meta:
+        verbose_name = 'Жалобы'
+        verbose_name_plural = 'Жалобы'

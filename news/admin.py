@@ -4,6 +4,8 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.utils.safestring import mark_safe
 from mptt.admin import DraggableMPTTAdmin
 from modeltranslation.admin import TranslationAdmin
+from import_export.admin import ImportExportModelAdmin
+from news.models import Post
 
 
 from .models import *
@@ -17,13 +19,10 @@ class PostAdminForm(forms.ModelForm):
         model = Post
         fields = '__all__'
 
-
-
-
 '''
 
 @admin.register(Post)
-class PostAdmin(TranslationAdmin):
+class PostAdmin(ImportExportModelAdmin, TranslationAdmin):
     list_display = ('id', 'title', 'category', 'created_at', 'status', 'views', )
     prepopulated_fields = {'slug': ('title',)}
     list_display_links = ('id', 'title')
@@ -72,8 +71,12 @@ class TagAdmin(TranslationAdmin):
         return '-'
 
     get_image.short_description = 'минеатюра'
-
-
+'''
+@admin.register(Post)
+class PostAdmin(ImportExportModelAdmin):
+    list_display = ('id', 'title', 'category', 'created_at', 'status', 'views', )
+    pass
+'''
 
 admin.site.register(Comment)
 admin.site.register(Complain)

@@ -29,6 +29,19 @@ def Setting(request):
     return render(request, 'base-site/bases.html', context=context )
 
 
+#head
+def head(request):
+    setting = Setting.objects.get(pk=1)
+    context = {
+        'setting': setting,
+    }
+    if request.LANGUAGE_CODE == "ru":
+        context['title'] = 'head'
+    if request.LANGUAGE_CODE == "en":
+        context['title'] = 'head'
+
+    return render(request, 'base-site/header/head.html', context=context)
+
 
 #Document
 def document(request):
@@ -67,6 +80,7 @@ def faq(request):
     if request.LANGUAGE_CODE == "en":
         context['title'] = 'Frequently Asked Questions'
     return render(request, 'cust/pages/FAQ.html', context=context )
+
 
 
 #privacypolicy

@@ -47,11 +47,10 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'akaynt.apps.AkayntConfig',
     'taski.apps.TaskiConfig',
-    #'pages.apps.PagesConfig',
     'school.apps.SchoolConfig',
-    'forum.apps.ForumConfig',
     'calendarapp.apps.CalendarappConfig',
 
+    'import_export',
     'crispy_forms',
     'phonenumber_field',
     'debug_toolbar',
@@ -158,6 +157,7 @@ LOCALE_PATHS = (
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

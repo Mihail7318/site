@@ -1,0 +1,52 @@
+{% extends 'base-profile/base.html' %}
+{% load static %}
+
+{% block title %}Event Dashboard{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-dashboard"></i> Панель управления</h1>
+        <p> Панель управления</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#"> Панель управления</a></li>
+    </ul>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile row">
+            <!--- Начало---->
+ <div class="col-md-11"><h2>Список</h2></div>
+             <div class="col-md-1">
+                 <a class="btn btn-success" href="{% url 'addtaski' %}" role="button">Добавить</a>
+             </div>
+
+    {% if zadacha.count > 0 %}
+    <div class="col-md-12">
+    <table>
+        <thead><th>Id</th><th>название</th><th></th></thead>
+        {% for zadacha in zadacha %}
+        <tr>
+            <td>{{ zadacha.id }}</td>
+            <td>{{ zadacha.title }}</td>
+            <td><a href="edit/{{zadacha.id}}">Изменить</a> | <a href="delete/{{zadacha.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+        </div>
+            <!--- Конец---->
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static 'style-profile/js/plugins/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'style-profile/js/plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+{% endblock extrascripts %}

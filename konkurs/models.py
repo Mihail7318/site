@@ -9,7 +9,7 @@ class Fed(models.Model):
         ('Not_to_publish', 'Не публиковать'),
     )
 
-    status = models.CharField(default='P',max_length=30, choices=STATUS_NEWS, verbose_name='Статус')
+    status = models.CharField(default='Publish',max_length=30, choices=STATUS_NEWS, verbose_name='Статус')
     yved = models.BooleanField(default=False, verbose_name='Уведомить')
     title = models.CharField(max_length=255, db_index=True, verbose_name='Наименование')
     slug = models.CharField(max_length=255, db_index=True, verbose_name='Ссылка')
@@ -34,7 +34,7 @@ class Reg(models.Model):
         ('Not_to_publish', 'Не публиковать'),
     )
 
-    status = models.CharField(default='P',max_length=30, choices=STATUS_NEWS, verbose_name='Статус')
+    status = models.CharField(default='Publish',max_length=30, choices=STATUS_NEWS, verbose_name='Статус')
     yved = models.BooleanField(default=False, verbose_name='Уведомить')
     title = models.CharField(max_length=255, db_index=True, verbose_name='Наименование')
     slug = models.CharField(max_length=255,verbose_name='Ссылка')

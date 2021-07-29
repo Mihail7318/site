@@ -3,7 +3,7 @@ from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.utils.safestring import mark_safe
 from mptt.admin import DraggableMPTTAdmin
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
 from .models import *
 
@@ -29,8 +29,7 @@ class VoprosAdmin(TranslationAdmin):
     save_as = True
     save_on_top = True'''
 
-class VoprosInline(admin.TabularInline):
-    fk_name = 'zadacha'
+class VoprosInline(TranslationTabularInline):
     model = Vopros
     extra = 1
 

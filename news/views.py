@@ -8,18 +8,16 @@ from .models import Post, Category, Tag, Comment, Complain
 from django.db.models import F
 from django.template.defaulttags import register
 from .utils import create_comments_tree
-from .forms import CommentForm
+from .forms import CommentForm, PostForm, TagForm, CategoryForm
 
 
 @register.filter
 def get_all_tag(value):
     return Tag.objects.all()
 
-
 @register.filter
 def get_all_category(value):
     return Category.objects.all()
-
 
 def get_rubrics_tag(self, context):
     if self.request.LANGUAGE_CODE == "ru":
@@ -32,7 +30,6 @@ def get_rubrics_tag(self, context):
     if self.request.LANGUAGE_CODE == "en":
         context['title_tag'] = 'All tag'
 
-
 class Home(ListView):
     model = Post
     template_name = 'news/news.html'
@@ -44,7 +41,6 @@ class Home(ListView):
         get_rubrics_tag(self, context)
 
         return context
-
 
 class PostsByCategory(ListView):
     template_name = 'news/news.html'
@@ -66,7 +62,6 @@ class PostsByCategory(ListView):
 
         return context
 
-
 class PostsByTag(ListView):
     template_name = 'news/news.html'
     context_object_name = 'posts'
@@ -87,9 +82,6 @@ class PostsByTag(ListView):
 
         return context
 
-
-
-
 class GetPost(DetailView):
     model = Post
     template_name = 'news/newsdetails.html'
@@ -108,7 +100,6 @@ def base_view(request):
     result = create_comments_tree(comments)
     comment_form = CommentForm(request.POST or None)
     return render(request, 'news/newsdetails.html', {'comments': result, 'comment_form': comment_form})
-
 
 def create_comment(request):
     print(request)
@@ -157,3 +148,97 @@ def create_child_comment(request):
     comments_list = create_comments_tree(comments_)
     return render(request, 'news/newsdetails.html', {'comments': comments_list})
 
+#-------------ВЫВОД-----------
+
+def listnews(request):
+
+    listnews = Post()
+
+    data = {
+        'listnews': listnews
+    }
+
+    return render(request, 'news/list/list_news.html', data)
+
+#-------------РЕДАКТИРОВАНИЕ-----------
+
+
+#-------------ДОБАВЛЕНИЕ-----------
+
+def addnews(request):
+    error = ''
+    if request.method == 'POST':
+        newspost = PostForm(request.POST)
+        if newspost.is_valid():
+            newspost.save()
+            slug = request.POST.get("slug")
+            post = Post.objects.get(slug=slug)
+            print(post)
+            if post is None:
+                print("none")
+                return HttpResponseRedirect(request.path_info)
+            else:
+                error = 'Занято'
+        else:
+            error = 'Форма была не верна заполнена'
+
+    newspost = PostForm()
+
+    data = {
+        'newspost': newspost,
+        'error' : error
+    }
+
+    return render(request, 'news/add/add_news.html', data)
+
+def addnewstag(request):
+    error = ''
+    if request.method == 'POST':
+        newstags = TagForm(request.POST)
+        if newstags.is_valid():
+            newstags.save()
+            slug = request.POST.get("slug")
+            tag = Tag.objects.get(slug=slug)
+            print(tag)
+            if tag is None:
+                print("none")
+                return HttpResponseRedirect(request.path_info)
+            else:
+                error = 'Занято'
+        else:
+            error = 'Форма была не верна заполнена'
+
+    newstags = TagForm()
+
+    data = {
+        'newstags': newstags,
+        'error' : error
+    }
+
+    return render(request, 'news/add/add_news_tags.html', data)
+
+def addnewscategory(request):
+    error = ''
+    if request.method == 'POST':
+        newscategory = CategoryForm(request.POST)
+        if newscategory.is_valid():
+            newscategory.save()
+            slug = request.POST.get("slug")
+            category = Category.objects.get(slug=slug)
+            print(category)
+            if category is None:
+                print("none")
+                return HttpResponseRedirect(request.path_info)
+            else:
+                error = 'Занято'
+        else:
+            error = 'Форма была не верна заполнена'
+
+    newscategory = CategoryForm()
+
+    data = {
+        'newscategory': newscategory,
+        'error' : error
+    }
+
+    return render(request, 'news/add/add_news_category.html', data)

@@ -1,0 +1,72 @@
+{% extends 'base-profile/base.html' %}
+{% load static %}
+
+{% block title %}Event Dashboard{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-dashboard"></i> Панель управления</h1>
+        <p> Панель управления</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#"> Панель управления</a></li>
+    </ul>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile row">
+            <!--- Начало---->
+                <form method="POST">
+        {% csrf_token %}
+        {{zadacha.title_ru}}<br>
+                    <input type="text" name="name" value="{{zadacha.title_ru}}" />
+                   {{ zadacha.media }}
+
+<select name="status" class="form-control" placeholder="Статус задачи" id="id_status">
+    {{ zadacha.status }}
+</select>
+                {{ zadacha.status }}<br>
+                Уведомить{{ zadacha.yved }}<br>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="title-ru-tab" data-bs-toggle="tab" data-bs-target="#title-ru" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Название [ru]</button>
+                        <button class="nav-link" id="title-en-tab" data-bs-toggle="tab" data-bs-target="#title-en" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Название [en]</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="title-ru" role="tabpanel" aria-labelledby="title-ru-tab">{{ zadacha.title_ru }}</div>
+                    <div class="tab-pane fade" id="title-en" role="tabpanel" aria-labelledby="title-en-tab">{{ zadacha.title_en }}</div>
+                </div>
+                <br>
+            {{ zadacha.slug }}<br>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-content" role="tablist">
+                        <button class="nav-link active" id="content-ru-tab" data-bs-toggle="tab" data-bs-target="#content-ru" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Описание [ru]</button>
+                        <button class="nav-link" id="content-en-tab" data-bs-toggle="tab" data-bs-target="#content-en" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Описание [en]</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tab-content">
+                    <div class="tab-pane fade show active" id="content-ru" role="tabpanel" aria-labelledby="content-ru-tab">{{ zadacha.content_ru }}</div>
+                    <div class="tab-pane fade" id="content-en" role="tabpanel" aria-labelledby="content-en-tab">{{ zadacha.content_en }}</div>
+                </div>
+                <br>
+                {{ zadacha.category }}<br>
+                {{ zadacha.image }}<br>
+                <br>
+        <input type="submit" value="Сохранить" >
+    </form>
+            <!--- Конец---->
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static 'style-profile/js/plugins/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'style-profile/js/plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+{% endblock extrascripts %}

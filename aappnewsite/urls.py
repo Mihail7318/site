@@ -13,6 +13,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('__debug__/', include(debug_toolbar.urls)),
     path('faicon/', include('faicon.urls')),
+
     path('', include("contact.urls")),
     path('', include("akaynt.urls")),
     path('koncurs/', include('konkurs.urls')),
@@ -22,11 +23,12 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('sovet/', include('sovet.urls')),
+    path('sovet/', include('sovet.urls'), name='sovet'),
     path("", include("glavnaya.urls")),
     path("news/", include("news.urls")),
     path("", include("cust.urls")),
     path("smena/", include('smena.urls')),
+    path("taski/", include('taski.urls')),
 
 )
 

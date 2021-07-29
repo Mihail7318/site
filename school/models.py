@@ -39,7 +39,7 @@ class Klas(models.Model):
         ('10', '10'),
         ('11', '11'),
     )
-    klas = models.CharField(max_length=30, choices=STATUS_KLASS, verbose_name='Статус')
+    klas = models.CharField(max_length=30, choices=STATUS_KLASS, verbose_name='Класс')
     STATUS_ALF = (
         ('1', 'А'),
         ('2', 'Б'),
@@ -57,7 +57,7 @@ class Klas(models.Model):
         ('14', 'М'),
         ('15', 'Н'),
     )
-    alf = models.CharField(max_length=30, choices=STATUS_ALF, verbose_name='Статус')
+    alf = models.CharField(max_length=30, choices=STATUS_ALF, verbose_name='Алфавит')
 
     def __str__(self):
         return self.klas
@@ -65,3 +65,16 @@ class Klas(models.Model):
     class Meta:
         verbose_name = 'Класс'
         verbose_name_plural = 'Класс'
+
+
+class dnevnik(models.Model):
+
+    teacher = models.CharField(max_length=255, verbose_name='Учитель')
+    children = models.CharField(max_length=255, verbose_name='Ученик')
+    data = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    yrok = models.CharField(max_length=255, verbose_name='Урок')
+    ocenka = models.IntegerField(verbose_name='Оценка')
+
+    class Meta:
+        verbose_name = 'Дневник'
+        verbose_name_plural = 'Дневник'
